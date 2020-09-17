@@ -34,8 +34,29 @@ export function activate(context: vscode.ExtensionContext) {
       }
 
       const fullText = editor.document.getText();
+      const numberOfLine = editor.document.lineCount;
+      const array = fullText.split("\n");
+      // const selections = editor.selections;
+
+      editor.edit((line) => {
+        // for (let selection of selections) {
+        //   line.replace(selection, "");
+        //   line.delete(selection);
+        // }
+        for (let i = 0; i < numberOfLine; i++) {
+          if (array[i].startsWith("console")) {
+            line.delete(
+              new vscode.Range(
+                new vscode.Position(i, 0),
+                new vscode.Position(i, 1000)
+              )
+            );
+          }
+        }
+      });
 
       vscode.window.showInformationMessage(fullText);
+      vscode.window.showInformationMessage(numberOfLine + "");
     }
   );
 

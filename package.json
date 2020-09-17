@@ -10,8 +10,8 @@
     "Other"
   ],
   "activationEvents": [
-		"onCommand:eraser-by-yejinh.helloWorld",
-		"onCommand:eraser-by-yejinh.getAll"
+    "onCommand:eraser-by-yejinh.helloWorld",
+    "onCommand:eraser-by-yejinh.getAll"
   ],
   "main": "./out/extension.js",
   "contributes": {
