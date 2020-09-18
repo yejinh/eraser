@@ -9,6 +9,7 @@ const textDebug = "debugger";
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
   const editor: vscode.TextEditor | undefined = vscode.window.activeTextEditor;
+  const document: vscode.TextDocument | undefined = editor?.document;
 
   // defualt
   vscode.commands.registerCommand("eraser-by-yejinh.helloWorld", () => {
@@ -16,37 +17,26 @@ export function activate(context: vscode.ExtensionContext) {
   });
 
   // delete console and debugger
-  vscode.commands.registerCommand("eraser-by-yejinh.getAll", () => {
-    if (!editor) {
+  vscode.commands.registerCommand("eraser-by-yejinh.deleteAll", () => {
+    if (!editor || !document) {
       return;
     }
 
     const numberOfLine: number = editor.document.lineCount;
-    const fullText: string = editor.document.getText();
-    const textArray: string[] = fullText.split("\n");
-    // const selections = editor.selections;
 
     editor.edit((line) => {
-      // for (let selection of selections) {
-      //   line.replace(selection, "");
-      //   line.delete(selection);
-      // }
       for (let i = 0; i < numberOfLine; i++) {
+        const currentLine = document.lineAt(i);
+
         if (
-          textArray[i].includes(textConsole) ||
-          textArray[i].includes(textDebug)
+          currentLine.text.includes(textConsole) ||
+          currentLine.text.includes(textDebug)
         ) {
-          line.delete(
-            new vscode.Range(
-              new vscode.Position(i, textArray[i].indexOf(textConsole)),
-              new vscode.Position(i, 1000)
-            )
-          );
+          line.delete(currentLine.rangeIncludingLineBreak);
         }
       }
     });
 
-    vscode.window.showInformationMessage(fullText);
     vscode.window.showInformationMessage(numberOfLine + "");
   });
 }

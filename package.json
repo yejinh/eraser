@@ -10,8 +10,7 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:eraser-by-yejinh.helloWorld",
-    "onCommand:eraser-by-yejinh.getAll"
+    "*"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -21,8 +20,8 @@
         "title": "Hello World"
       },
       {
-        "command": "eraser-by-yejinh.getAll",
-        "title": "Get All"
+        "command": "eraser-by-yejinh.deleteAll",
+        "title": "Delete All"
       }
     ]
   },
