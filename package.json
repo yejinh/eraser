@@ -22,6 +22,10 @@
       {
         "command": "eraser-by-yejinh.deleteAll",
         "title": "Delete All"
+      },
+      {
+        "command": "eraser-by-yejinh.inactiveAll",
+        "title": "Inactive All"
       }
     ]
   },

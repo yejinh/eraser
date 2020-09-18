@@ -39,6 +39,30 @@ export function activate(context: vscode.ExtensionContext) {
 
     vscode.window.showInformationMessage(numberOfLine + "");
   });
+
+  // inactive console and debugger
+  vscode.commands.registerCommand("eraser-by-yejinh.inactiveAll", () => {
+    if (!editor || !document) {
+      return;
+    }
+
+    const numberOfLine: number = editor.document.lineCount;
+
+    editor.edit((line) => {
+      for (let i = 0; i < numberOfLine; i++) {
+        const currentLine: vscode.TextLine = document.lineAt(i);
+
+        if (
+          currentLine.text.includes(textConsole) ||
+          currentLine.text.includes(textDebug)
+        ) {
+          line.insert(new vscode.Position(i, 0), "// ");
+        }
+      }
+    });
+
+    vscode.window.showInformationMessage(numberOfLine + "");
+  });
 }
 
 // this method is called when your extension is deactivated
