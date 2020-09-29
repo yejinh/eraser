@@ -2,8 +2,12 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
 
-const textConsole = "console";
-const textDebug = "debugger";
+function checkLogs(line: vscode.TextLine) {
+  const textConsole = "console";
+  const textDebug = "debugger";
+
+  return line.text.includes(textConsole) || line.text.includes(textDebug);
+}
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -28,10 +32,7 @@ export function activate(context: vscode.ExtensionContext) {
       for (let i = 0; i < numberOfLine; i++) {
         const currentLine = document.lineAt(i);
 
-        if (
-          currentLine.text.includes(textConsole) ||
-          currentLine.text.includes(textDebug)
-        ) {
+        if (checkLogs(currentLine)) {
           line.delete(currentLine.rangeIncludingLineBreak);
         }
       }
@@ -52,10 +53,7 @@ export function activate(context: vscode.ExtensionContext) {
       for (let i = 0; i < numberOfLine; i++) {
         const currentLine: vscode.TextLine = document.lineAt(i);
 
-        if (
-          currentLine.text.includes(textConsole) ||
-          currentLine.text.includes(textDebug)
-        ) {
+        if (checkLogs(currentLine)) {
           line.insert(new vscode.Position(i, 0), "// ");
         }
       }
