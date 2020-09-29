@@ -15,13 +15,8 @@ export function activate(context: vscode.ExtensionContext) {
   const editor: vscode.TextEditor | undefined = vscode.window.activeTextEditor;
   const document: vscode.TextDocument | undefined = editor?.document;
 
-  // defualt
-  vscode.commands.registerCommand("eraser-by-yejinh.helloWorld", () => {
-    vscode.window.showInformationMessage("hi from eraser!");
-  });
-
   // delete console and debugger
-  vscode.commands.registerCommand("eraser-by-yejinh.deleteAll", () => {
+  vscode.commands.registerCommand("eraser-by-yejinh.removeAll", () => {
     if (!editor || !document) {
       return;
     }

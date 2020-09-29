@@ -1,5 +1,5 @@
 {
-  "name": "eraser-by-yejinh",
+  "name": "eraser",
   "displayName": "eraser",
   "publisher": "yejinh",
   "description": "erase unused console and debugger",
@@ -17,15 +17,11 @@
   "contributes": {
     "commands": [
       {
-        "command": "eraser-by-yejinh.helloWorld",
-        "title": "Hello World"
-      },
-      {
-        "command": "eraser-by-yejinh.deleteAll",
+        "command": "eraser.removeAll",
         "title": "Delete All"
       },
       {
-        "command": "eraser-by-yejinh.inactiveAll",
+        "command": "eraser.inactiveAll",
         "title": "Inactive All"
       }
     ]
